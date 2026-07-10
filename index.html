@@ -259,10 +259,10 @@
   .chain-shine{
     position:absolute;
     top:50%;
-    width:46px; height:8px;
+    width:32px; height:6px;
     transform: translateY(-50%);
-    background: radial-gradient(ellipse at center, rgba(255,255,255,0.95), rgba(255,255,255,0) 72%);
-    filter: blur(1.5px);
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.55), rgba(255,255,255,0) 70%);
+    filter: blur(2px);
     opacity:0;
     left:0;
     pointer-events:none;
@@ -825,7 +825,7 @@
 
       // fade in/out near the ends so it doesn't pop
       var edge = Math.min(pos, 1 - pos);
-      shine.style.opacity = Math.min(1, edge * 14).toFixed(2);
+      shine.style.opacity = Math.min(0.55, edge * 10).toFixed(2);
 
       if (nodeProgress !== null) {
         var justCrossed = (prevPos < nodeProgress && pos >= nodeProgress) ||

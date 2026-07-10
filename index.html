@@ -161,10 +161,10 @@
     min-height:calc(100% - 60px);
     display:flex;
     flex-direction:column;
-    align-items:center;
+    align-items:flex-start;
     justify-content:flex-start;
-    padding: 64px 24px 40px;
-    text-align:center;
+    padding: 36px 24px 60px;
+    text-align:left;
   }
   .greeting{
     font-family:'Space Grotesk', sans-serif;
@@ -238,7 +238,7 @@
   .apps{
     display:flex;
     flex-wrap: wrap;
-    justify-content:center;
+    justify-content:flex-start;
     gap: 28px 22px;
     max-width: 760px;
     width:100%;
@@ -247,7 +247,7 @@
   .app-groups{
     display:flex;
     align-items:flex-start;
-    justify-content:center;
+    justify-content:flex-start;
     gap: 64px;
     position:relative;
   }
@@ -467,13 +467,94 @@
   }
   @keyframes blink{ 50%{ opacity:0; } }
 
+  /* chat panel, styled after a Claude-like conversation */
+  .chat{
+    width:100%;
+    max-width: 680px;
+    margin-top: 56px;
+    text-align:left;
+  }
+  .chat-thread{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    margin-bottom: 22px;
+  }
+  .chat-msg{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .chat-avatar{
+    width:28px; height:28px;
+    border-radius:8px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  }
+  .chat-avatar svg{ width:15px; height:15px; }
+  .chat-bubble{
+    font-size:14.5px;
+    line-height:1.65;
+    color: var(--ink-dim);
+    padding-top:3px;
+  }
+  .chat-bubble b{ color: var(--ink); font-weight:600; }
+  .chat-composer{
+    display:flex;
+    align-items:flex-end;
+    gap:10px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 16px;
+    padding: 12px 12px 12px 18px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .chat-composer:focus-within{
+    border-color: rgba(255,255,255,0.28);
+    background: rgba(255,255,255,0.07);
+  }
+  .chat-composer textarea{
+    flex-grow:1;
+    background:none;
+    border:none;
+    outline:none;
+    resize:none;
+    color: var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size: 14.5px;
+    line-height:1.5;
+    max-height:140px;
+    padding-top:4px;
+  }
+  .chat-composer textarea::placeholder{ color: var(--ink-faint); }
+  .chat-send{
+    width:32px; height:32px;
+    border-radius:50%;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: rgba(255,255,255,0.12);
+    border:none;
+    cursor:pointer;
+    color: var(--ink-faint);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .chat-send:hover{
+    background: linear-gradient(135deg, var(--cyan), var(--magenta));
+    color:#0A0714;
+  }
+  .chat-send svg{ width:15px; height:15px; }
+
   @media (max-width: 720px){
-    .topbar{ grid-template-columns: auto 1fr auto; gap: 12px; padding: 0 14px; }
-    .topbar-brand img{ height: 20px; }
+    .topbar{ grid-template-columns: 1fr auto; gap: 12px; padding: 0 14px; }
     .content{ padding: 28px 16px 32px; }
     .greeting{ font-size: 18px; margin-bottom: 28px; }
     .apps{ max-width: 100%; gap: 24px 18px; }
-    .app-groups{ flex-direction: column; align-items:center; gap: 36px; }
+    .app-groups{ flex-direction: column; align-items:flex-start; gap: 36px; }
     .connector-line, .connector-node{ display:none; }
     .summary{ margin-top: 32px; }
     .summary-item{ font-size: 12px; }
@@ -486,7 +567,7 @@
     top: 0;
     z-index: 15;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: 24px;
     height: 60px;
@@ -507,7 +588,7 @@
   }
   .topbar-search{
     display:flex;
-    justify-content:center;
+    justify-content:flex-start;
     width:100%;
   }
 
@@ -616,9 +697,6 @@
 
   <div class="stage">
   <div class="topbar">
-    <div class="topbar-brand">
-      <img src="https://complykey.com/wp-content/uploads/2023/08/ComplyKey-Logo-Final-Transparent.png" alt="ComplyKEY">
-    </div>
     <div class="topbar-search">
       <div class="search-bar">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -648,8 +726,6 @@
   <div class="vignette"></div>
 
   <div class="content">
-    <div class="greeting">Home</div>
-
     <div class="app-groups">
       <div class="app-group">
         <div class="group-label">Service</div>
@@ -778,6 +854,31 @@
           <span><b>redaction</b> <span class="flag-urgent">[urgent]</span> outbound document flagged for unredacted personal data<span class="cursor"></span></span>
         </li>
       </ul>
+    </div>
+
+    <div class="chat">
+      <div class="chat-thread">
+        <div class="chat-msg">
+          <div class="chat-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0A0714" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l1.8 4.6L18 9.4l-4.2 1.8L12 16l-1.8-4.8L6 9.4l4.2-1.8L12 3z"></path>
+            </svg>
+          </div>
+          <div class="chat-bubble">
+            Hi Peter. I can see three things worth your attention today, an SLA risk on Service Desk, an unredacted document flagged before external send, and a policy still short of full acknowledgment on Hub. Want me to start with the redaction flag?
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-composer">
+        <textarea rows="1" placeholder="Message ComplyKEY..."></textarea>
+        <button class="chat-send" title="Send" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="6 11 12 5 18 11"></polyline>
+          </svg>
+        </button>
+      </div>
     </div>
 
   </div>
@@ -972,6 +1073,15 @@
       }
     }
     requestAnimationFrame(tick);
+  })();
+
+  (function(){
+    var textarea = document.querySelector('.chat-composer textarea');
+    if (!textarea) return;
+    textarea.addEventListener('input', function(){
+      textarea.style.height = 'auto';
+      textarea.style.height = Math.min(textarea.scrollHeight, 140) + 'px';
+    });
   })();
 
   function toggleAvatarMenu(e){

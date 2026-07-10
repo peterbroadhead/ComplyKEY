@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ComplyKEY | Home</title>
+<title>ComplyKEY</title>
 <link rel="icon" type="image/png" href="https://complykey.com/wp-content/uploads/2023/08/cropped-product-270x270.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -29,10 +29,66 @@
     -webkit-font-smoothing:antialiased;
   }
 
+  .app-shell{
+    display:flex;
+    min-height:100vh;
+    background:#07050D;
+  }
+
+  .sidebar{
+    width:68px;
+    flex-shrink:0;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+    padding:20px 0;
+    background: rgba(255,255,255,0.02);
+    border-right: 1px solid rgba(255,255,255,0.07);
+    position:relative;
+    z-index:5;
+  }
+  .sidebar-mark{
+    width:34px; height:34px;
+    border-radius:9px;
+    object-fit:cover;
+    margin-bottom:14px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+  }
+  .sidebar-nav{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+  }
+  .sidebar-link{
+    width:40px; height:40px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: rgba(245,243,250,0.42);
+    text-decoration:none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .sidebar-link svg{ width:19px; height:19px; }
+  .sidebar-link:hover{
+    background: rgba(255,255,255,0.06);
+    color: rgba(245,243,250,0.8);
+  }
+  .sidebar-link.active{
+    background: rgba(66,217,232,0.12);
+    color: var(--cyan);
+  }
+  .sidebar-spacer{ flex-grow:1; }
+
   .stage{
     position:relative;
     min-height:100vh;
     width:100%;
+    flex:1;
+    min-width:0;
     overflow:hidden;
     background:#07050D;
   }
@@ -525,7 +581,40 @@
 </head>
 <body>
 
-<div class="stage">
+<div class="app-shell">
+  <nav class="sidebar">
+    <img class="sidebar-mark" src="https://complykey.com/wp-content/uploads/2023/08/cropped-product-270x270.png" alt="ComplyKEY">
+    <div class="sidebar-nav">
+      <a class="sidebar-link active" href="#" title="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 11l8-7 8 7"></path>
+          <path d="M6 10v9h12v-9"></path>
+        </svg>
+      </a>
+      <a class="sidebar-link" href="#" title="Reports">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="20" x2="5" y2="12"></line>
+          <line x1="12" y1="20" x2="12" y2="7"></line>
+          <line x1="19" y1="20" x2="19" y2="15"></line>
+        </svg>
+      </a>
+      <a class="sidebar-link" href="#" title="Notifications">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"></path>
+          <path d="M9.5 19a2.5 2.5 0 005 0"></path>
+        </svg>
+      </a>
+    </div>
+    <div class="sidebar-spacer"></div>
+    <a class="sidebar-link" href="#" title="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path>
+      </svg>
+    </a>
+  </nav>
+
+  <div class="stage">
   <div class="topbar">
     <div class="topbar-brand">
       <img src="https://complykey.com/wp-content/uploads/2023/08/ComplyKey-Logo-Final-Transparent.png" alt="ComplyKEY">
@@ -692,6 +781,7 @@
     </div>
 
   </div>
+</div>
 </div>
 
 <script>

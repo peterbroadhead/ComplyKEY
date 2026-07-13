@@ -22,17 +22,16 @@
   *{ box-sizing:border-box; margin:0; padding:0; }
 
   html,body{
-    height:100%;
+    min-height:100%;
     background:#07050D;
     color:var(--ink);
     font-family:'Inter', sans-serif;
     -webkit-font-smoothing:antialiased;
-    overflow:hidden;
   }
 
   .stage{
     position:relative;
-    height:100vh;
+    min-height:100vh;
     width:100%;
     overflow:hidden;
     background:#07050D;
@@ -103,7 +102,7 @@
   .content{
     position:relative;
     z-index:2;
-    height:100%;
+    min-height:100%;
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -408,10 +407,16 @@
   @keyframes blink{ 50%{ opacity:0; } }
 
   @media (max-width: 720px){
-    .apps{ max-width: 320px; }
+    .content{ padding: 32px 20px 40px; }
+    .mark{ height:60px; margin-bottom:28px; }
+    .search-wrap{ margin-bottom:36px; }
+    .apps{ max-width: 100%; gap: 24px 18px; }
     .app-groups{ flex-direction: column; align-items:center; gap: 36px; }
-    .wordmark{ font-size: 28px; }
+    .connector-line, .connector-node{ display:none; }
     .summary{ margin-top: 32px; }
+    .summary-item{ font-size: 12px; }
+    .avatar-wrap{ top:16px; right:16px; }
+    .avatar{ width:36px; height:36px; font-size:12px; }
   }
 
   /* profile avatar, top right */
@@ -605,7 +610,7 @@
             <span class="app-label">Redaction</span>
           </a>
 
-          <a class="app" href="https://app.complykey.com/ediscovery" target="_blank" rel="noopener">
+          <a class="app" href="https://zumoba.mailmetercloud.com/portal/Account/Login?ReturnUrl=%2Fportal%2Fmymailmeter%2Fsearch" target="_blank" rel="noopener">
             <div class="app-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="#8FE3EC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 3H7a1 1 0 00-1 1v16a1 1 0 001 1h10a1 1 0 001-1V8z"></path>

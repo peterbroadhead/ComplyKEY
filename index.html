@@ -519,7 +519,7 @@
           <circle cx="11" cy="11" r="7"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <input type="text" id="searchInput" placeholder="Search records, cases, policies, or ask a question...">
+        <input type="text" id="searchInput" placeholder="Search records, cases, policies, or ask a question..." autofocus>
         <span class="search-kbd">/</span>
       </div>
     </div>
@@ -674,7 +674,7 @@
     var typing = true;
 
     function typewriterStep(){
-      if (document.activeElement === searchInputEl) {
+      if (searchInputEl.value.length > 0) {
         setTimeout(typewriterStep, 400);
         return;
       }
